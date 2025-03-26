@@ -1,0 +1,362 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    height: 100vh;
+    overflow: hidden;
+    background: #212121; /* Dark theme default */
+    transition: background 0.3s ease;
+}
+
+body:not(.dark-theme) {
+    background: #91D3D1; /* Light theme */
+}
+
+.hidden {
+    display: none;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#splash-screen {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+#splash-screen h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#username {
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+#start-button {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-button:hover {
+    background-color: #FFA500;
+}
+
+#legend {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    color: #333;
+}
+
+#legend ul {
+    list-style: none;
+    padding: 0;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+#game-screen {
+    display: flex;
+    height: 100%;
+}
+
+#left-panel {
+    width: 70%;
+    background: #212121; /* Dark theme: solid #212121 */
+    position: relative;
+}
+
+body:not(.dark-theme) #left-panel {
+    background: linear-gradient(180deg, #91D3D1 20%, #FFF 100%); /* Light theme: gradient */
+}
+
+#right-panel {
+    width: 30%;
+    background: #91D3D1; /* Fixed for both themes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#player-name {
+    font-size: 2em;
+    color: #fff;
+}
+
+body:not(.dark-theme) #player-name {
+    color: #000;
+}
+
+#score-display {
+    font-size: 2em;
+    color: #fff;
+    margin: 20px 0;
+}
+
+body:not(.dark-theme) #score-display {
+    color: #000;
+}
+
+#growth-display {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+#superseed-logo {
+    width: 100px;
+    transition: width 0.3s ease;
+}
+
+#superseed-logo.wiggle {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+#basket {
+    width: 100px;
+    height: 30px;
+    background: #FFFFFF; /* Dark theme: white */
+    border-radius: 0 0 50px 50px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #FFD700; /* Yellow border */
+}
+
+body:not(.dark-theme) #basket {
+    background: #8B4513; /* Light theme: brown */
+    border: 2px solid #FFD700; /* Yellow border */
+}
+
+#basket.shielded {
+    box-shadow: 0 0 15px #91d3d1;
+}
+
+.falling-item {
+    position: absolute;
+    font-size: 5.2em;
+    transition: top linear;
+}
+
+#leaderboard {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+body:not(.dark-theme) #leaderboard {
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+}
+
+#rankings-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#daily-rankings, #all-time-rankings {
+    width: 48%;
+}
+
+#leaderboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+#leaderboard h3 {
+    font-size: 1.2em;
+    margin: 10px 0 5px;
+}
+
+#reset-all-time {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #FF6347;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#reset-all-time:hover {
+    background: #FF4500;
+}
+
+#game-over, #mystery-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+#game-over.active, #mystery-popup.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-over-content {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+body:not(.dark-theme) #game-over-content {
+    background: #fff;
+    color: #000;
+}
+
+#mystery-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    width: 400px;
+    max-width: 90%;
+    border: 2px solid #91D3D1;
+    box-shadow: 0 0 10px rgba(145, 211, 209, 0.5);
+}
+
+#mystery-content h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+#mystery-content p {
+    font-weight: 400;
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.mystery-option {
+    margin: 15px 0;
+}
+
+.mystery-option button {
+    width: 100%;
+    padding: 12px;
+    background: #FFD700;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 900;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mystery-option button .icon {
+    font-size: 1.3em;
+}
+
+.mystery-option button:hover {
+    background: #FFA500;
+}
+
+.mystery-option p {
+    font-weight: 400;
+    font-size: 0.9em;
+    margin-top: 5px;
+    color: #ddd;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: #555;
+    margin-top: 5px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #91D3D1;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 30s linear;
+}
+
+.progress-bar.active::after {
+    transform: scaleX(0);
+}
+
+#reset-button {
+    padding: 10px 20px;
+    background: #FFD700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reset-button:hover {
+    background: #FFA500;
+}
+
+#sound-toggle, #theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    font-size: 1.5em;
+    background: #212121;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#sound-toggle {
+    bottom: 70px;
+}

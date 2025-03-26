@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUPR Growth</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <div id="game-container">
+        <!-- Splash Screen (Intro Page) -->
+        <div id="splash-screen">
+            <h1>SUPR Growth</h1>
+            <input type="text" id="username" placeholder="Enter your username" maxlength="20">
+            <button id="start-button">Start Game</button>
+            <div id="legend">
+                <h2>Fill the Basket!</h2>
+                <p>Catch these goodies to grow your $SUPR stash:</p>
+                <ul>
+                    <li>🌱 <strong>Super Sprout</strong> - 50 $SUPR</li>
+                    <li>🌽 <strong>Corn King</strong> - 20 $SUPR</li>
+                    <li>🥕 <strong>Carrot Cash</strong> - 30 $SUPR</li>
+                    <li>💧 <strong>Liquid Loan</strong> - 5 $SUPR (Resizes basket)</li>
+                    <li>🪱 <strong>Worminator</strong> - 0 $SUPR (Game over)</li>
+                    <li>🎁 <strong>Mystery Box</strong> - ? $SUPR (Special effects)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Game Screen (Split Screen) -->
+        <div id="game-screen" class="hidden">
+            <div id="left-panel">
+                <div id="basket"></div>
+            </div>
+            <div id="right-panel">
+                <div id="player-name"></div>
+                <div id="score-display">$SUPR: <span id="current-score">0</span></div>
+                <div id="growth-display">
+                    <img src="superseed-logo.png" alt="Superseed Logo" id="superseed-logo">
+                </div>
+                <div id="leaderboard">
+                    <h2>Top Farmers</h2>
+                    <div id="rankings-container">
+                        <div id="daily-rankings">
+                            <h3>Today</h3>
+                            <ul id="daily-list"></ul>
+                        </div>
+                        <div id="all-time-rankings">
+                            <h3>All-Time</h3>
+                            <ul id="all-time-list"></ul>
+                        </div>
+                    </div>
+                    <button id="reset-all-time" class="hidden">Reset All-Time</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Popup -->
+        <div id="game-over" class="hidden">
+            <div id="game-over-content">
+                <h2>Game Over!</h2>
+                <p>Your $SUPR: <span id="final-score"></span></p>
+                <button id="reset-button">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Mystery Box Popup -->
+        <div id="mystery-popup" class="hidden">
+            <div id="mystery-content">
+                <h2><strong>Superseed Mystery Box</strong></h2>
+                <p>Choose a Superseed feature to boost your $SUPR harvest:</p>
+                <div class="mystery-option">
+                    <button id="burn-debt"><span class="icon">🔥</span> <strong>Burn Debt</strong></button>
+                    <p>Sacrifice 25% of your score for a 2x multiplier on points for 30 seconds.</p>
+                    <div id="burn-debt-bar" class="progress-bar hidden"></div>
+                </div>
+                <div class="mystery-option">
+                    <button id="supercollateral"><span class="icon">🛡️</span> <strong>Supercollateral</strong></button>
+                    <p>Gain a shield against the Worminator for 30 seconds.</p>
+                    <div id="supercollateral-bar" class="progress-bar hidden"></div>
+                </div>
+                <div class="mystery-option">
+                    <button id="proof-repayment"><span class="icon">🎲</span> <strong>Proof-of-Repayment</strong></button>
+                    <p>Gamble your score: 60% chance to double it, 40% chance to halve it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle Buttons -->
+        <button id="sound-toggle">🔊</button>
+        <button id="theme-toggle">☀️</button>
+
+        <!-- Audio -->
+        <audio id="sound-seed" src="sounds/seed.mp3" preload="auto"></audio>
+        <audio id="sound-corn" src="sounds/corn.mp3" preload="auto"></audio>
+        <audio id="sound-carrot" src="sounds/carrot.mp3" preload="auto"></audio>
+        <audio id="sound-water" src="sounds/water.mp3" preload="auto"></audio>
+        <audio id="sound-worm" src="sounds/worm.mp3" preload="auto"></audio>
+        <audio id="sound-mystery" src="sounds/mystery.mp3" preload="auto"></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
